@@ -1,0 +1,29 @@
+#!/bin/bash
+
+
+#Usuwanie wszystkich podkatalogów zadanego katalogu (parametr wywołaniaskryptu). Zawartość tych podkatalogów należy przenieść do katalogunadrzędnego. Usuwanie dotyczy tylko jednego poziomu podkatalogów.
+
+echo "Skrypt 12"	
+if [ ! $# -eq 1 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+	exit 1
+fi
+	
+if [[ ! -d $1 ]]   			
+then
+	echo "Podany argument nie jest katalogiem"
+fi
+
+for file in $1/*
+do	
+	if [[ -d $file ]] #jezeli jest katalogiem
+	then
+		mv $file/* $1
+		rm -rd $file
+	fi
+done
+
+
+
+

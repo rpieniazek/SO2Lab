@@ -1,0 +1,35 @@
+#!/bin/bash
+
+
+#Łączenie w jeden wszystkich plików należących do zadanego katalogu(parametr wywołania skryptu), o zadanym rozszerzeniu (drugi parametru skryptu). Kolejność, w jakiej pliki zostanąpołączone - nieistotna. Treść każdego pliku powinna być poprzedzona nagłówkiem z jego nazwą
+
+echo "Skrypt 5"	
+if [ $# -eq 0 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+
+	if [[ -d $1 ]]		#jezeli parametr istnieje i jest katalogiem
+	then
+		cd $1		#przejdźmy do katalogu
+		mergedFile=polaczone.$2
+		
+		for file in *.$2
+ 		do
+			if [ ! -e $mergedFile ]
+			then	
+				touch mergedFile
+			fi
+		
+			echo "Nazwa pliku: $file" >> $mergedFile
+			
+			while read -r readedLine
+			do
+				echo "$readedLine" >> $mergedFile 
+			done < "$file"
+	
+		done
+	fi
+
+fi

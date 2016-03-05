@@ -1,0 +1,24 @@
+#!/bin/bash
+
+echo "Skrypt 1"		#wyswietlenie napisu..
+if [ $# -eq 0 ] 	# $# oznacza liste aktualnych parametrow
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+fi
+
+if [[ -d $1 ]]		#jezeli parametr istnieje i jest katalogiem
+then
+	cd $1		#przejdźmy do katologu
+fi
+
+
+for x in *old		#iteracje przez wszystkie pliki, z rozszerzeniem old
+do
+  rm $x
+done
+
+
+for x in *		#iteracje przez wszystkie pliki
+do
+	mv $x `echo "$x".old`
+done

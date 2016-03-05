@@ -1,0 +1,4 @@
+Nazwa pliku: rafala.txt
+wiadomosc w rafalA
+Nazwa pliku: rafalb.txt
+wiadomosc w rafalB

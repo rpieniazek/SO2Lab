@@ -1,0 +1,37 @@
+#!/bin/bash
+
+
+#Łączenie w jeden plików z listy, umieszczonej  w pliku o zadanej nazwie(parametr wywołania skryptu. Kolejność, w jakiej pliki zostaną połączone- ściśle według listy. Treśćkażdego pliku powinna być poprzedzona nagłówkiemzjego nazwą. Plik wynikowy powinien mieć nazwę pliku pierwotnie zawierającego listę. 
+
+
+echo "Skrypt 5"	
+if [ $# -eq 0 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+
+	if [[ -e $1 ]]		#jezeli lista istnieje 
+	then
+		lista=$1
+		
+		mergedFile=merged
+		if [ ! -e $mergedFile ]
+		then	
+			touch mergedFile
+		fi
+
+		while read -r fileName #wczytujemy nazwe pliku
+		do	
+			echo "Nazwa pliku: $fileName" >> $mergedFile	
+			
+			while read -r readedLine
+			do	
+				echo "$readedLine" >> $mergedFile 
+			done < "$fileName"
+		done < "$lista"
+		
+		
+	fi
+
+fi

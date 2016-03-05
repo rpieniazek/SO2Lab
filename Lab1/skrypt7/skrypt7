@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+#Przesuwanie wszystkich plików z ustawionym prawem wykonywania z jednego katalogu do drugiego. Pozostałe pliki w katalogu nie powinny być ruszane. Nazwykatalogów, źródłowego i docelowego, zadawane jako parametry skryptu.   
+
+
+echo "Skrypt 7"	
+if [ $# -eq 0 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+
+	if [ -e $1 ]  			
+	then
+		for file in $1/*
+		do	
+			echo "Nazwa pliku: $file"
+			if [ -x $file ]
+			then
+				mv $file $2
+		
+			fi	
+		done		
+	fi
+fi

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+#Porównanie zawartości dwóch zadanych katalogów (argumenty skryptu). Przyporównaniu należy ignorować podkatalogi. W wyniku wyświetlić na ekranielistę plików o identycznych nazwach w obu katalogach   
+
+
+
+echo "Skrypt 10"	
+if [ $# -eq 0 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+	if [[ -d $1 ]] && [[ -d $2 ]]  			
+	then
+		for file1 in $1/*
+		do	
+			for file2 in $2/*
+			do
+				if [[ ! -d $file1 ]] && [[ ! -d $file2 ]]
+				then	
+					echo $file1 >> lista.txt
+				fi	
+
+			done
+			
+		done	
+	fi
+fi
+
+cat lista.txt | uniq
+

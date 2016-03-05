@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+#Przesuwanie wszystkich plików z ustawionym prawem wykonywania z jednego katalogu do drugiego. Pozostałe pliki w katalogu nie powinny być ruszane. Nazwykatalogów, źródłowego i docelowego, zadawane jako parametry skryptu.   
+
+
+echo "Skrypt 9"	
+if [ $# -eq 0 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+	if [ -d $1 ]  			
+	then
+		for file in $1/*
+		do	
+			
+			if [[ ! -s $file ]] 
+			then	
+				echo "Usuwam: $file"
+				rm $file
+			fi	
+		done	
+	fi
+fi

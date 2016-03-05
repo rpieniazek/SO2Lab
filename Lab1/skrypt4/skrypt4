@@ -1,0 +1,32 @@
+#!/bin/bash
+
+
+#Numerowanie wszystkich plików w zadanym katalogu (parametr wywołania skryptu),
+#do których mamy ustawione prawo wykonywania  („execute”), przez dodanie dodatkowego 
+#członu rozszerzenia o postaci .<numer kolejny>. Numeracja powinna przebiegać według wielkości plików. 
+
+
+echo "Skrypt 4"	
+if [ $# -eq 0 ] 	
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+
+	if [[ -d $1 ]]		#jezeli parametr istnieje i jest katalogiem
+	then
+		cd $1		#przejdźmy do katalogu
+				
+		i=1
+		for file in `ls -S`
+		do	
+			if [[ -x $file ]]
+			then
+				mv "$file" "$file.$i"
+				echo $file
+				((i++))
+			fi
+		done
+	fi
+
+fi

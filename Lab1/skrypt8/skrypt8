@@ -1,0 +1,36 @@
+#!/bin/bash
+
+
+#Listowanie plików z zadanego katalogu (parametr wywołania skryptu), wrazz jego podkatalogami. Zawartość podkatalogów ma być listowana wpostaci <ścieżkadostępu względem listowanego katalogu>/<nazwa pliku>. Ograniczyćliczbę zagnieżdżeń podkatalo-gów (np. do dwóch).    
+
+
+counter=0
+
+function list {
+startListing=$1
+for file in $startListing/*
+do
+	echo "$file"
+	if [[ -d $file ]] && [[ counter -lt 2 ]]
+	then
+		((counter++))
+		list $file
+	fi
+done
+}
+
+#clear
+echo "Zadanie 8"
+
+if [ $# -eq 0 ]
+then
+  echo "Brak parametrów"
+else
+
+list $1
+
+fi
+
+
+
+

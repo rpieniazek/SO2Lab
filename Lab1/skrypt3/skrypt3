@@ -1,0 +1,28 @@
+#!/bin/bash
+
+
+#Kasowanie wszystkich plików w zadanym katalogu (parametr wywołania skryptu), poza plikami wykonywalnymi, 
+#mającymi ustawiony bit dostępu typu „execute”
+
+echo "Skrypt 3"		#wyswietlenie napisu..
+if [ $# -eq 0 ] 	# $# oznacza liste aktualnych parametrow
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else
+
+	if [[ -d $1 ]]		#jezeli parametr istnieje i jest katalogiem
+	then
+		cd $1		#przejdźmy do katalogu
+	
+
+		for file in *
+		do	
+			if [[ ! -x $file ]]
+			then
+				rm $file
+			fi
+		done
+	fi
+
+fi

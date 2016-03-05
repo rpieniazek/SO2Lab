@@ -1,0 +1,21 @@
+#!/bin/bash
+
+echo "Skrypt 2"		#wyswietlenie napisu..
+if [ $# -eq 0 ] 	# $# oznacza liste aktualnych parametrow
+then
+	echo "Brak argumentów"	#wypisujemy komunikat
+
+else 
+
+	if [[ -d $1 ]]		#jezeli parametr istnieje i jest katalogiem
+	then
+		cd $1		#przejdźmy do katalogu
+	fi
+
+	filename="$2"
+	while read -r line	
+	do    
+	    touch $line  
+
+	done < "$filename"
+fi
